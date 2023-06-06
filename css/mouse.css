@@ -1,0 +1,9 @@
+ body {
+   cursor:url(https://cdn.jsdelivr.net/gh/sakimir/github-picture-host/resources/normal.cur),
+         default;
+ }
+ a,
+ img {
+   cursor:url(https://cdn.jsdelivr.net/gh/sakimir/github-picture-host/resources/pin.cur),
+         default;
+ }
