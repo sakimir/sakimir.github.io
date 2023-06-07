@@ -4,6 +4,32 @@
   
     
     <entry>
+      <title>hexo-admin插件Windows系统插入图片Github失败 解决方案</title>
+      <link href="/2023/06/07/Untitled/"/>
+      <url>/2023/06/07/Untitled/</url>
+      
+        <content type="html"><![CDATA[<p><img src="/images/pasted-22.png" alt="upload successful"><br>&#x2F;images&#x2F;pasted-1.png 是正确的链接 </p><p>通过改代码来实现一步到位的正确链接</p><ol><li>从<code>node_modules</code>的子目录，找到<code>hexo-admin</code></li><li>打开<code>api.js</code>文件，搜索<code>imagePath</code>字符找到下图的代码片段，红框内就是我们要改的代码。</li></ol><p><img src="/images/pasted-23.png" alt="upload successful"></p><p>3.将代码修改为</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">filename = imagePath+&quot;/&quot;+ filename//修改点</span><br><span class="line">var outpath = path.join(hexo.source_dir, filename)</span><br><span class="line"></span><br><span class="line">var dataURI = req.body.data.slice(&#x27;data:image/png;base64,&#x27;.length)</span><br><span class="line">var buf = new Buffer(dataURI, &#x27;base64&#x27;)</span><br><span class="line">hexo.log.d(`saving image to $&#123;outpath&#125;`)</span><br><span class="line">fs.writeFile(outpath, buf, function (err) &#123;</span><br><span class="line">  if (err) &#123;</span><br><span class="line">    console.log(err)</span><br><span class="line">  &#125;</span><br><span class="line">  hexo.source.process().then(function () &#123;</span><br><span class="line">    res.done(&#123;</span><br><span class="line">      src: filename,//修改点</span><br><span class="line">      msg: msg</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>4.不能让我们插入一张图片就刷新一次，我们可以让图片上传后暂停一分钟再显示，所以要修改第二处代码。</p><p>打开<code>hexo-admin</code>目录下的子目录，找到<code>bundle.js</code>，并打开它。</p><p>搜索<code>upload</code>找到以下代码</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">uploadImage: function(data, filename)  &#123;return post(&#x27;/images/upload&#x27;, &#123;data: data, filename: filename&#125;);&#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>修改为</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">   uploadImage: function(data, filename)  &#123;</span><br><span class="line">var imgJson=post(&#x27;/images/upload&#x27;, &#123;data: data, filename: filename&#125;);</span><br><span class="line">var start = (new Date()).getTime();</span><br><span class="line">while((new Date()).getTime() - start &lt; 1000) &#123;</span><br><span class="line">continue;</span><br><span class="line">&#125;</span><br><span class="line">return imgJson;</span><br><span class="line">&#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>解决！！！</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>GitHub报错：Failed to connect to github.com port 443 解决方案</title>
+      <link href="/2023/06/07/Git%E6%8A%A5%E9%94%99%EF%BC%9A-Failed-to-connect-to-github-com-port-443-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+      <url>/2023/06/07/Git%E6%8A%A5%E9%94%99%EF%BC%9A-Failed-to-connect-to-github-com-port-443-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+      
+        <content type="html"><![CDATA[<p>如果有vpn，网页可以打开github。说明命令行在拉取&#x2F;推送代码时并没有使用vpn进行代理。</p><p>如果没有vpn，则需要开代理。</p><h3 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h3><p>配置http代理Windows、Linux、Mac OS 中 git 命令相同：</p><p>配置socks5代理</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy socks5 127.0.0.1:7890</span><br><span class="line">git config --global https.proxy socks5 127.0.0.1:7890</span><br></pre></td></tr></table></figure><p>配置http代理</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global http.proxy 127.0.0.1:7890</span><br><span class="line">git config --global https.proxy 127.0.0.1:7890</span><br></pre></td></tr></table></figure><h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><p><code>命令中的主机号</code>（127.0.0.1）是使用的代理的主机号(自己电脑有vpn那么本机可看做访问github的代理主机)，即填入127.0.0.1即可，否则填入代理主机 ip(就是网上找的那个ip)</p><p><code>命令中的端口号</code>（7890）为代理软件(代理软件不显示端口的话，就去Windows中的代理服务器设置中查看)或代理主机的监听IP，可以从代理服务器配置中获得，否则填入网上找的那个端口port </p><p><img src="/images/pasted-20.png" alt="upload successful"></p><p>socks5和http两种协议由使用的代理软件决定，不同软件对这两种协议的支持有差异，如果不确定可以都尝试一下<br>主机号和端口号可在代理的位置查看(自己有vpn的需要查看)</p><p><img src="/images/pasted-21.png" alt="upload successful"></p><h5 id="查看代理命令"><a href="#查看代理命令" class="headerlink" title="查看代理命令"></a>查看代理命令</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global --get http.proxy</span><br><span class="line">git config --global --get https.proxy</span><br></pre></td></tr></table></figure><h5 id="取消代理命令"><a href="#取消代理命令" class="headerlink" title="取消代理命令"></a>取消代理命令</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git config --global --unset http.proxy</span><br><span class="line">git config --global --unset https.proxy</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hexo-Butterfly添加天气组件</title>
       <link href="/2023/06/07/Hexo-Butterfly%E6%B7%BB%E5%8A%A0%E5%A4%A9%E6%B0%94%E7%BB%84%E4%BB%B6/"/>
       <url>/2023/06/07/Hexo-Butterfly%E6%B7%BB%E5%8A%A0%E5%A4%A9%E6%B0%94%E7%BB%84%E4%BB%B6/</url>
