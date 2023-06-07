@@ -4,37 +4,11 @@
   
     
     <entry>
-      <title>fqf</title>
-      <link href="/2023/06/07/fqf/"/>
-      <url>/2023/06/07/fqf/</url>
-      
-        <content type="html"><![CDATA[<p>ffcac出v</p><p><img src="/%5Cimages%5Cpasted-10.png" alt="upload successful"></p><p><img src="/%5Cimages%5Cpasted-11.png" alt="upload successful"></p><p><img src="/%5Cimages%5Cpasted-12.png" alt="upload successful"></p><p><img src="/images/pasted-13.png" alt="upload successful"></p><p>fafa分割线</p><p><img src="/images/pasted-14.png" alt="upload successful"></p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Untitled</title>
-      <link href="/2023/06/07/Untitled/"/>
-      <url>/2023/06/07/Untitled/</url>
-      
-        <content type="html"><![CDATA[<p>fff</p><p><img src="/%5Cimages%5Cpasted-9.png" alt="upload successful"></p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>100MB以下文件托管方案–jsDelivr + Github</title>
       <link href="/2023/06/07/100MB%E4%BB%A5%E4%B8%8B%E6%96%87%E4%BB%B6%E6%89%98%E7%AE%A1%E6%96%B9%E6%A1%88%E2%80%93jsDelivr-Github/"/>
       <url>/2023/06/07/100MB%E4%BB%A5%E4%B8%8B%E6%96%87%E4%BB%B6%E6%89%98%E7%AE%A1%E6%96%B9%E6%A1%88%E2%80%93jsDelivr-Github/</url>
       
-        <content type="html"><![CDATA[<p>1.将文件上传到GitHub的一个公开仓库<br>2.直接使用jsDelivr 链接访问文件。</p><p>链接使用方法：<code>https://cdn.jsdelivr.net/gh/你的用户名/你的仓库名@发布的版本号/文件路径</code></p><p>例如：<code>https://cdn.jsdelivr.net/gh/xxxx/xxx-xxx/resources/a.xxx</code></p><p><img src="/%5Cimages%5Cpasted-7.png" alt="upload successful"></p><p><img src="/%5Cimages%5Cpasted-8.png" alt="upload successful"><br>ffff</p>]]></content>
+        <content type="html"><![CDATA[<p>1.将文件上传到GitHub自己的公开仓库。</p><p>2.直接使用jsDelivr 链接访问文件。</p><p>链接使用方法：<code>https://cdn.jsdelivr.net/gh/你的用户名/你的仓库名@发布的版本号/文件路径</code></p><p>例如：<code>https://cdn.jsdelivr.net/gh/xxxx/xxx-xxx/resources/a.xxx</code></p><p>文件路径：</p><p><img src="/images/pasted-15.png" alt="upload successful"></p>]]></content>
       
       
       
